@@ -3,6 +3,37 @@
 <%- include('./partials/head.ejs') %> 
 <body>
     <%- include('./partials/nav.ejs') %>
-    <h1>Welcome to Login page</h1>
+    <h2>Welcome to Login page</h2>
+    <div>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="avatar" />
+            <input type="submit" name="btn_upload_profile_pic" value="Upload" />
+        </form>
+    </div>
+
+    <div>
+        <form class = "age" action="/ageForm" method="POST">
+            <label for=""> Enter Age </label>
+            <input type="text" class="ageVal" name="ageVal">
+            <input type="submit" value="Submit">
+        </form>
+        <div>
+            <p><%= age %> </p>
+        </div>
+        <script>
+            $('age').on('submit',function(){
+                var age = $('.ageVal').val();
+                $.ajax({
+                    type:'POST',
+                    url:'/ageForm',
+                    data:{age:age},
+                    success:function(data){
+                        location.reload();
+                    }
+                });
+            });
+            
+        </script>
+    </div>
 </body>
 </html>

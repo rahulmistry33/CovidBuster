@@ -15,7 +15,7 @@
         const xhr = new XMLHttpRequest();
 
         //get request
-        xhr.open('GET','https://newsapi.org/v2/top-headlines?q=covid&apiKey=7aebdb3d6ce344c6a444dc0f52ad3c42',true);
+        xhr.open('GET','https://newsapi.org/v2/everything?q=covid&apiKey=7aebdb3d6ce344c6a444dc0f52ad3c42',true);
 
         xhr.onload = function(){
             // console.log(this.responseText);
@@ -43,6 +43,9 @@
 
             area.innerHTML = newsHtml;
 
+            }
+            else{
+                console.log("error hai bhai");
             }
         }
         xhr.send()
