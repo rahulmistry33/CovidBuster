@@ -3,7 +3,12 @@
 <%- include('./partials/head.ejs') %> 
 <body> 
     <%- include('./partials/nav.ejs') %> 
-    <div class="row" id='news'></div>
+    
+    <div>
+        <button class="waves-effect waves-light btn right mt-3 bg-info" id="fetchBtn"><i class="material-icons left">announcement</i>News</button> 
+        <div class="row" id='news'></div>
+    </div>
+
     <script>
         let fetchBtn = document.getElementById('fetchBtn');
         fetchBtn.addEventListener('click',dataFromApi);
