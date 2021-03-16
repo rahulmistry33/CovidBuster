@@ -7,13 +7,20 @@ const news = require('./models/article');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
 
+
+// const news = require('./models/news');
+
+
 const NewsAPI = require('newsapi');
 const article = require('./models/article');
 
 const loginController = require('./controllers/login_controller');
 
+
+
+
 //CONNECT TO MONGODB
-// mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
+mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
 
 
 
@@ -26,6 +33,7 @@ const loginController = require('./controllers/login_controller');
 //         }))
 //         .catch((err) => console.log(err));
  
+
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -49,15 +57,18 @@ const isAuth = (req, res, next) => {
     }
 }
 
+
 //REGISTERING VIEW ENGINE
 app.set('view engine', 'ejs');
 
 // MIDDLEWARE & STATIC FILES
 app.use('/assets',express.static('assets'));
 app.use('/uploads',express.static('uploads'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
+
 
 // SETTING UP API-KEY LINK WITHT THE NEWS-API
 const newsapi = new NewsAPI('a8720d66af5749479e06c45ec5ff5a92');
@@ -95,6 +106,7 @@ app.get('/news', (req, res) => {
       });
     
 });
+
 
 //ROUTE FOR BLOG PAGE
 app.get('/articles',(req,res) => {
@@ -197,6 +209,7 @@ app.get('/Login', (req, res) => {
 });
 
 
+
 //ROUTE FOR MAP PAGE
 app.get('/map',(req,res)=>{
     res.render('map');
@@ -212,7 +225,7 @@ app.use((req, res) => {
     res.render('error');
 });
 
-const PORT = 3000;
+
 //SETTING UP THE PORT
 app.listen(3000, () => {
 	console.log("Server started listening on port 3000");
