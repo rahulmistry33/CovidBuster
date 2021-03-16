@@ -8,12 +8,15 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
 
 
-const news = require('./models/news');
+// const news = require('./models/news');
+
 
 const NewsAPI = require('newsapi');
 const article = require('./models/article');
 
 const loginController = require('./controllers/login_controller');
+
+
 
 
 //CONNECT TO MONGODB
@@ -36,7 +39,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
-    uri: 'mongodb://localhost:27017/sessions',
+    uri: 'mongodb://localhost:27017/covidBuster',
     collection: 'mySessions'
 });
 app.use(session({
