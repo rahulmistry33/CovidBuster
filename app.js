@@ -1,16 +1,19 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+
 const mongoose = require('mongoose');
 const news = require('./models/article');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
+
 const NewsAPI = require('newsapi');
 const article = require('./models/article');
 
+const loginController = require('./controllers/login_controller');
 
 //CONNECT TO MONGODB
-mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
+// mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
 
 
 
@@ -24,6 +27,27 @@ mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: 
 //         .catch((err) => console.log(err));
  
 
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const store = new MongoDBStore({
+    uri: 'mongodb://localhost:27017/covidBuster',
+    collection: 'mySessions'
+});
+app.use(session({
+    secret: 'prac',
+    resave: false,
+    saveUninitialized: false,
+    store: store 
+}));
+
+const isAuth = (req, res, next) => {
+    if (req.session.isAuth) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 //REGISTERING VIEW ENGINE
 app.set('view engine', 'ejs');
@@ -34,8 +58,12 @@ app.use('/uploads',express.static('uploads'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
+
 // SETTING UP API-KEY LINK WITHT THE NEWS-API
 const newsapi = new NewsAPI('a8720d66af5749479e06c45ec5ff5a92');
+
+
+app.use('/login', loginController);
 
 //ROUTE FOR CLEARING COOKIES
 app.get('/clear_cookies', (req, res) => {
@@ -174,7 +202,9 @@ app.get('/map',(req,res)=>{
     res.render('map');
 });
 
-
+app.get('/profile', isAuth, (req, res) => {
+    res.render('profile');
+});
 
 
 //ERROR ROUTE CUSTOM
@@ -182,7 +212,7 @@ app.use((req, res) => {
     res.render('error');
 });
 
-
+const PORT = 3000;
 //SETTING UP THE PORT
 app.listen(3000, () => {
 	console.log("Server started listening on port 3000");
