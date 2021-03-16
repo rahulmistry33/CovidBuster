@@ -3,49 +3,24 @@
 <%- include('./partials/head.ejs') %> 
 <body>
     <%- include('./partials/nav.ejs') %>
-    <div class="row container">
-        <h1>Welcome to Login page</h1>
-        <div class="col-md-6 offset-md-3 bg-light px-5">
-          <form action="/profile" method="post" enctype="multipart/form-data">
-            <div class="input-field">
-              <i class="material-icons prefix">account_circle</i>
-              <input id="icon_prefix" type="text" class="validate" name="Username">
-              <label for="icon_prefix">Username</label>
-            </div>
-            <div class="input-field">
-              <i class="material-icons prefix">phone</i>
-              <input id="icon_telephone" type="tel" class="validate" name="Contact_no">
-              <label for="icon_telephone">Telephone</label>
-            </div>
-            <div class="input-field">
-              <i class="material-icons prefix">email</i>
-              <input id="icon_prefix" type="text" class="validate" name="Email">
-              <label for="icon_prefix">Email</label>
-            </div>
-            <div class="input-field">
-              <i class="material-icons prefix">lock</i>
-              <input id="icon_prefix" type="text" class="validate" name="Password">
-              <label for="icon_prefix">Password</label>
-            </div>
-            <div class="input-field">
-              <i class="material-icons prefix">lock</i>
-              <input id="icon_prefix" type="text" class="validate" name="Age">
-              <label for="icon_prefix">Age</label>
-            </div>
-            <div class="file-field input-field">
-              <div class="btn bg-info px-3">
-                <span>Profile Photo</span>
-                <input type="file" name="avatar">
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-            </div>
-            <div class="mx-auto" style="width: 150px;">
-              <button class="waves-effect waves-light btn-primary px-5" type="submit">Register</button>
-            </div>
-          </form>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form action="/login/profile" method="POST">
+                <div class="input-field">
+                    <i class="material-icons prefix">email</i>
+                    <input id="icon_prefix" type="text" class="validate" name="Email">
+                    <label for="icon_prefix">Email</label>
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="icon_prefix" type="password" class="validate" name="Password">
+                    <label for="icon_prefix">Password</label>
+                </div>
+                <button class="center-align btn" type="submit">Login</button>
+            </form>
+            <br>
+            <a href="/login/register">I don't have an account</a>
         </div>
-      </div>
+    </div>  
 </body>
 </html>

@@ -1,30 +1,33 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const mongoose = require('mongoose');
-const news = require('./models/news');
-const bodyParser = require('body-parser');
 
+const news = require('./models/news');
 const NewsAPI = require('newsapi');
 
+const loginController = require('./controllers/login_controller');
 
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
-// DATABASE CONNECTION
-// RETURN A PROMISE
-// WHEN CONNECTION IS ESTABLISHED,ONLY THEN THE SERVER STARTS
+const store = new MongoDBStore({
+    uri: 'mongodb://localhost:27017/sessions',
+    collection: 'mySessions'
+});
+app.use(session({
+    secret: 'prac',
+    resave: false,
+    saveUninitialized: false,
+    store: store 
+}));
 
-
-
-//CONNECTION USING MONGODB CLOUD...UNCOMMENT IF NEEDED.
-// const dbURI = 'mongodb+srv://rahulmistry:rahul123@covid-buster.z3xlk.mongodb.net/covid-buster?retryWrites=true&w=majority';
-// mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
-//         .then((result) => app.listen(3000, () => {
-//             console.log('Server is listening');
-//         }))
-//         .catch((err) => console.log(err));
- 
-
-
+const isAuth = (req, res, next) => {
+    if (req.session.isAuth) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 //REGISTERING VIEW ENGINE
 app.set('view engine', 'ejs');
@@ -32,11 +35,12 @@ app.set('view engine', 'ejs');
 // MIDDLEWARE & STATIC FILES
 app.use('/assets',express.static('assets'));
 app.use('/uploads',express.static('uploads'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // SETTING UP API-KEY LINK WITHT THE NEWS-API
 const newsapi = new NewsAPI('a8720d66af5749479e06c45ec5ff5a92');
+
+
+app.use('/login', loginController);
 
 //ROUTE FOR CLEARING COOKIES
 app.get('/clear_cookies', (req, res) => {
@@ -69,19 +73,15 @@ app.get('/news', (req, res) => {
     
 });
 
-//ROUTE FOR LOGIN PAGE
-app.get('/Login', (req, res) => {
-    console.log("Redirected to login page");
-    res.render('login');
-});
-
 
 //ROUTE FOR MAP PAGE
 app.get('/map',(req,res)=>{
     res.render('map');
 });
 
-
+app.get('/profile', isAuth, (req, res) => {
+    res.render('profile');
+});
 
 
 //ERROR ROUTE CUSTOM
@@ -89,7 +89,7 @@ app.use((req, res) => {
     res.render('error');
 });
 
-
+const PORT = 3000;
 //SETTING UP THE PORT
 app.listen(PORT, () => {
 	console.log(`Server started listening on port ${PORT}`);
