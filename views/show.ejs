@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %> 
+<body> 
+    <%- include('./partials/nav.ejs') %> 
+    <div class="container">
+        
+        <h4 class="mb-4"><%= articles.title %></h4>
+        <div>
+            <div>
+                <%= articles.createdAt.toLocaleDateString() %>
+            </div>
+            
+            <div>
+                <%= articles.description %>
+            </div>
+            
+            <a href="/edit/<%= articles.id %>" id="edit" class="btn btn-secondary">Edit</a>
+
+           
+        </div>
+        
+    </div>
+</body>
+</html>
