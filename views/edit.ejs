@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %> 
+<body> 
+    <%- include('./partials/nav.ejs') %> 
+    <div class="container">
+        <h1 class="mb-4">Edit an Article </h1>
+        <form action="/articles/<%= articles.id %>?_method=PUT" method="POST">
+            <%-include('./partials/_form-fields') %>
+        </form>
+    </div>
+</body>
+</html>
