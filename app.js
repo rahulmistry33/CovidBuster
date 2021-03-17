@@ -76,22 +76,9 @@ const newsapi = new NewsAPI('a8720d66af5749479e06c45ec5ff5a92');
 
 app.use('/login', loginController);
 
-//ROUTE FOR CLEARING COOKIES
-app.get('/clear_cookies', (req, res) => {
-    res.clearCookie('name');
-    console.log('Coockies cleared!');
-    res.render('index');
-});
-
-//ROUTE FOR COOKIES
-app.get('/get_cookies', (req, res) => {
-    console.log(req.cookies);
-});
-
 
 //INDEX ROUTE
 app.get('/', (req, res) => {
-    // console.log('Hello there!');
     res.render('index');
 });
 
@@ -199,14 +186,6 @@ app.post('/newArticle',(req,res)=>{
     articles.save()
     res.redirect('/articles')
 })
-
-
-
-//ROUTE FOR LOGIN PAGE
-app.get('/Login', (req, res) => {
-    console.log("Redirected to login page");
-    res.render('login');
-});
 
 
 
