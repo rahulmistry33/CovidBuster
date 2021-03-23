@@ -108,6 +108,7 @@ app.get('/articles',(req,res) => {
         })
 })
 
+// READ A PARTICULAR BLOG USING THE ID
 app.get('/articles/:id',(req,res)=>{
     console.log(req.url)
     article.findById(req.params.id ,(err,articles)=>{
@@ -121,6 +122,7 @@ app.get('/articles/:id',(req,res)=>{
     
 })
 
+//EDIT ROUTE TO EDIT A PARTICULAR BLOG POST
 app.get('/edit/:id',(req,res)=>{
     console.log(req.url)
     article.findById(req.params.id ,(err,articles)=>{
@@ -134,29 +136,26 @@ app.get('/edit/:id',(req,res)=>{
     
 })
 
+//UPDATING A BLOG POST
 app.put('/articles/:id',(req,res)=>{
     console.log(req.url)
-    const items = new article({
+    const items  = {
         title:req.body.title,
         description:req.body.description,
-    });
-    items.save();
-    // articles.save()
-    article.findByIdAndDelete(req.params.id ,(err,articles)=>{
+    };
+    article.findOneAndUpdate({_id:req.params.id },items,(err,articles)=>{
         if(err){
             console.log("Error, Article cannot be deleted")
         }
         else{
-            console.log("Updated the item")
+            console.log("Updated the item:")
             res.redirect('/articles')
         }
        
     });
-
-
 })
 
-
+//DELETE A BLOG POST
 app.delete('/articles/:id',(req,res)=>{
     console.log(req.url)
     article.findByIdAndDelete(req.params.id ,(err,articles)=>{
@@ -172,10 +171,12 @@ app.delete('/articles/:id',(req,res)=>{
     
 })
 
+//WRITE A NEW ARTICLE
 app.get('/newArticle',(req,res) => {
     res.render('createArticle')
 })
 
+//SAVE THE ARTICLE TO DATABASE
 app.post('/newArticle',(req,res)=>{
     console.log("new article")
     const articles = new article({
