@@ -20,7 +20,7 @@ const loginController = require('./controllers/login_controller');
 
 
 //CONNECT TO MONGODB
-mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
+// mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
 
 
 
@@ -153,8 +153,7 @@ app.put('/articles/:id',(req,res)=>{
        
     });
 
-    
-    
+
 })
 
 
