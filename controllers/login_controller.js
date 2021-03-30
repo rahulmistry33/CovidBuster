@@ -91,6 +91,8 @@ router.post('/profile', async (req, res) => {
     }
     console.log(`${email} logged in!`);
     req.session.isAuth = true;
+    req.session.username = user.username;
+    console.log(req.session);
     res.redirect('/profile');
 });
 
