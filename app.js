@@ -179,6 +179,11 @@ app.get('/profile', isAuth, (req, res) => {
     res.render('profile', { username: username });
 });
 
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('login');
+})
+
 
 //ERROR ROUTE CUSTOM
 app.use((req, res) => {
