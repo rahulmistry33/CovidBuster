@@ -4,19 +4,21 @@ counts = {};
 function getData(){
     const xhr = new XMLHttpRequest();
     //get request
-    xhr.open('GET','https://api.rootnet.in/covid19-in/stats/latest',true);
+    // xhr.open('GET','https://api.rootnet.in/covid19-in/stats/latest',true);
+    xhr.open('GET','https://api.covid19india.org/data.json',true);
     xhr.onload = function(){
-        // console.log(this.responseText);
+        console.log(this.responseText);
         // if(this.status === 200){
         let obj = JSON.parse(this.responseText);
-        console.log(obj);
-        states = obj.data.regional;
+        console.log(obj.statewise);
+        states = obj.statewise;
         // console.log("states is :"+states);
         c = 0;
         for(let i=0;i<states.length;i++){
-            console.log(states[i]);
-            console.log(states[i].totalConfirmed);
-            counts[states[i].loc] = states[i].totalConfirmed;
+            if(states[i].states == "Total") continue;
+            console.log(states[i].state +" "+states[i].statecode);
+            console.log(states[i].active);
+            counts[states[i].state] = {confirmed:states[i].confirmed,active:states[i].active,code:states[i].statecode};
         }
         // console.log(counts+" is counts");
         // console.log(counts["Sikkim"]);
@@ -102,7 +104,7 @@ function displayMap(){
                 items: {
                 KA: {
                     tooltip: {
-                    text: 'Karnataka \\n Active cases:'+counts['Karnataka'],
+                    text: 'Karnataka \\n Active cases:'+counts['Karnataka'].active+" \\n Confirmed Cases:"+counts['Karnataka'].confirmed,
                     backgroundColor: '#ff5722'
                     },
                     backgroundColor: '#ff5722',
@@ -112,7 +114,7 @@ function displayMap(){
                 },
                 MH: {
                     tooltip: {
-                    text: 'Maharashtra \\n Active cases:'+counts['Maharashtra'],
+                    text: 'Maharashtra \\n Active cases:'+counts['Maharashtra'].active+" \\n Confirmed Cases:"+counts['Maharashtra'].confirmed,
                     backgroundColor: '#ff9800'
                     },
                     backgroundColor: '#ff9800',
@@ -122,7 +124,7 @@ function displayMap(){
                 },
                 TL: {
                     tooltip: {
-                    text: 'Telangana \\n Active cases:'+counts['Telengana'],
+                    text: 'Telangana \\n Active cases:'+counts['Telangana'].active+" \\n Confirmed Cases:"+counts['Telangana'].confirmed,
                     backgroundColor: '#00AE4D'
                     },
                     backgroundColor: '#00AE4D',
@@ -132,7 +134,7 @@ function displayMap(){
                 },
                 TN: {
                     tooltip: {
-                    text: 'Tamil Nadu \\n Active cases:'+counts['Tamil Nadu'],
+                    text: 'Tamil Nadu \\n Active cases:'+counts['Tamil Nadu'].active+" \\n Confirmed Cases:"+counts['Tamil Nadu'].confirmed,
                     backgroundColor: '#00bcd4'
                     },
                     backgroundColor: '#00bcd4',
@@ -142,7 +144,7 @@ function displayMap(){
                 },
                 GJ: {
                     tooltip: {
-                    text: 'Gujarat \\n Active cases:'+counts['Gujarat'],
+                    text: 'Gujarat \\n Active cases:'+counts['Gujarat'].active+" \\n Confirmed Cases:"+counts['Gujarat'].confirmed,
                     backgroundColor: '#00bcd4'
                     },
                     backgroundColor: '#00bcd4',
@@ -152,7 +154,7 @@ function displayMap(){
                 },
                 RJ: {
                     tooltip: {
-                    text: 'Rajasthan \\n Active cases:'+counts['Rajasthan'],
+                    text: 'Rajasthan \\n Active cases:'+counts['Rajasthan'].active+" \\n Confirmed Cases:"+counts['Rajasthan'].confirmed,
                     backgroundColor: '#00bcd4'
                     },
                     backgroundColor: '#00bcd4',
@@ -162,7 +164,7 @@ function displayMap(){
                 },
                 MP: {
                     tooltip: {
-                    text: 'Madhya Pradesh \\n Active cases:'+counts['Madhya Pradesh'],
+                    text: 'Madhya Pradesh \\n Active cases:'+counts['Madhya Pradesh'].active+" \\n Confirmed Cases:"+counts['Madhya Pradesh'].confirmed,
                     backgroundColor: '#00bcd4'
                     },
                     backgroundColor: '#00bcd4',
@@ -170,16 +172,47 @@ function displayMap(){
                     visible: true
                     }
                 },
-                CHH: {
-                    tooltip: {
-                    text: 'Chhatisgarh \\n Active cases:'+counts['Chhattisgarh'],
-                    backgroundColor: '#00bcd4'
+                    CT: {
+                        tooltip: {
+                        text: 'Chhattisgarh \\n Active cases:'+counts['Chhattisgarh'].active+" \\n Confirmed Cases:"+counts['Chhattisgarh'].confirmed,
+                        backgroundColor: '#00bcd4'
+                        },
+                        backgroundColor: '#00bcd4',
+                        label: {
+                        visible: true
+                        }
                     },
-                    backgroundColor: '#00bcd4',
-                    label: {
-                    visible: true
-                    }
-                },
+                    PB: {
+                        tooltip: {
+                        text: 'Punjab \\n Active cases:'+counts['Punjab'].active+" \\n Confirmed Cases:"+counts['Punjab'].confirmed,
+                        backgroundColor: '#00bcd4'
+                        },
+                        backgroundColor: '#00bcd4',
+                        label: {
+                        visible: true
+                        }
+                    },
+                    JK: {
+                        tooltip: {
+                        text: 'Jammu & Kashmir \\n Active cases:'+counts['Jammu and Kashmir'].active+" \\n Confirmed Cases:"+counts['Jammu and Kashmir'].confirmed,
+                        backgroundColor: '#00bcd4'
+                        },
+                        backgroundColor: '#00bcd4',
+                        label: {
+                        visible: true
+                        }
+                    },
+                    JH: {
+                        tooltip: {
+                        text: 'Jharkhan \\n Active cases:'+counts['Jharkhand'].active+" \\n Confirmed Cases:"+counts['Jharkhand'].confirmed,
+                        backgroundColor: '#00bcd4'
+                        },
+                        backgroundColor: '#00bcd4',
+                        label: {
+                        visible: true
+                        }
+                    },
+                    
                 },
                 label: { // text displaying. Like valueBox
                 fontSize: '15px',
