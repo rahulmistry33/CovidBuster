@@ -13,7 +13,6 @@ const methodOverride = require('method-override')
 
 const NewsAPI = require('newsapi');
 const article = require('./models/article');
-
 const loginController = require('./controllers/login_controller');
 
 
