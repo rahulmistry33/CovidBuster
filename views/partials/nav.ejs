@@ -1,9 +1,3 @@
-<ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
-  </ul>
 <nav>
     <div class="nav-wrapper light-blue">
         <span class="text-white p-3"><a href="/" class="brand-logo" style="text-decoration: none;">CovidBuster</a></span>
@@ -20,17 +14,16 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/profile">Profile</a>
-                            <a class="dropdown-item" href="#">Edit Profile</a>
+                            <a class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
                             <a class="dropdown-item" href="/logout">Logout</a>
                         </div>
                     </div>
                 </li>
             <% } %> 
-            
         </ul>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
     <script>
         $('.dropdown-toggle').dropdown();
     </script>
