@@ -17,20 +17,6 @@ const loginController = require('./controllers/login_controller');
 
 
 
-
-//CONNECT TO MONGODB
-// mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
-
-//CONNECTION USING MONGODB CLOUD...UNCOMMENT IF NEEDED.
-// const dbURI = 'mongodb+srv://rahulmistry:rahul123@covid-buster.z3xlk.mongodb.net/covid-buster?retryWrites=true&w=majority';
-// mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
-//         .then((result) => app.listen(3000, () => {
-//             console.log('Server is listening');
-//         }))
-//         .catch((err) => console.log(err));
- 
-
-
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
@@ -77,7 +63,7 @@ app.use('/login', loginController);
 
 //INDEX ROUTE
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', { username: req.session.username });
 });
 
 // ROUTE WHEN NEWS BUTTON IS CLICKED
@@ -87,7 +73,7 @@ app.get('/news', (req, res) => {
         language: 'en',
       }).then(response => {
         // console.log(response);
-        res.render('news', {response:response.articles});
+        res.render('news', { response: response.articles });
       });
     
 });
@@ -101,7 +87,7 @@ app.get('/articles',(req,res) => {
                 console.log("ERROR!");
             }
             else{
-                res.render('articles',{articles:articles})
+                res.render('articles',{ articles: articles })
             }
         })
 })
@@ -113,7 +99,7 @@ app.get('/articles/:id',(req,res)=>{
         if(err) res.redirect('/articles')
         else{
             // console.log(articles);
-            res.render('show',{articles:articles})
+            res.render('show',{ articles: articles })
         }
        
     });
@@ -127,7 +113,7 @@ app.get('/edit/:id',(req,res)=>{
         if(err) res.redirect('/articles')
         else{
             console.log(articles);
-            res.render('edit',{articles:articles})
+            res.render('edit',{ articles: articles })
         }
        
     });
@@ -189,17 +175,23 @@ app.post('/newArticle',(req,res)=>{
 
 //ROUTE FOR MAP PAGE
 app.get('/map',(req,res)=>{
-    res.render('map');
+    res.render('map', { username: req.session.username });
 });
 
 app.get('/profile', isAuth, (req, res) => {
-    res.render('profile');
+    const username = req.session.username;
+    res.render('profile', { username: username });
 });
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('login');
+})
 
 
 //ERROR ROUTE CUSTOM
 app.use((req, res) => {
-    res.render('error');
+    res.render('error', { username: req.session.username });
 });
 
 
@@ -207,5 +199,3 @@ app.use((req, res) => {
 app.listen(3000, () => {
 	console.log("Server started listening on port 3000");
 });
-
-

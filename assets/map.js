@@ -27,29 +27,6 @@ function getData(){
         
 
         displayMap();
-        
-        // articles.forEach(function(e) {
-
-        //         let card = `<div class="col-sm-3"><div class="card" style="width: 18rem;">
-        //         <img src="${e['urlToImage']}" class="card-img-top" alt="...">
-        //         <div class="card-body">
-        //             <h5 class="card-title">${e['title']}</h5>
-        //             <p class="card-text">${e['content']}</p>
-        //             <a href="${e['url']}" class="btn btn-primary">View More</a>
-        //         </div>
-        //         </div>
-        //         </div>`
-        //     newsHtml += card;
-
-        // });
-
-        // area.innerHTML = newsHtml;
-
-        // }
-        // else{
-        //     console.log("error hai bhai");
-        // }
-    // }
     
     }
     xhr.send()

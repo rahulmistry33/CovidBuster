@@ -45,7 +45,7 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 
-router.post('/',upload.single('avatar'), async (req, res) => {
+router.post('/', upload.single('avatar'), async (req, res) => {
     const username = req.body.Username;
     const phone = req.body.Contact_no;
     const email = req.body.Email;
@@ -91,6 +91,8 @@ router.post('/profile', async (req, res) => {
     }
     console.log(`${email} logged in!`);
     req.session.isAuth = true;
+    req.session.username = user.username;
+    console.log(req.session);
     res.redirect('/profile');
 });
 

@@ -1,11 +1,31 @@
 <nav>
     <div class="nav-wrapper light-blue">
-        <span class="text-white p-3"><a href="/" class="brand-logo">CovidBuster</a></span>
+        <span class="text-white p-3"><a href="/" class="brand-logo" style="text-decoration: none;">CovidBuster</a></span>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/map">Map</a></li>
-            <li><a class="text-white" href="/login"><i class="material-icons left">account_circle</i>Login</a></li>
-            <li><a class="text-white" href="/articles">Articles </a></li>
-
+            <li><a href="/map" style="text-decoration: none;">Map</a></li>
+            <li><a class="text-white" href="/articles" style="text-decoration: none;">Articles </a></li>
+            <% if (typeof username == 'undefined' || username == null) { %>            
+                <li><a class="text-white" href="/login" style="text-decoration: none;"><i class="material-icons left">account_circle</i>Login</a></li>
+            <% } else { %>
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;">
+                            <i class="material-icons left">account_circle</i><%= username %></a>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/profile">Profile</a>
+                            <a class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
+                            <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                    </div>
+                </li>
+            <% } %> 
         </ul>
     </div>
-    </nav>
+
+
+    <script>
+        $('.dropdown-toggle').dropdown();
+    </script>
+
+</nav>
