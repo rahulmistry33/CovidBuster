@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
+const cors = require('cors')
 const mongoose = require('mongoose');
 const news = require('./models/article');
 const bodyParser = require('body-parser');
@@ -14,6 +14,8 @@ const methodOverride = require('method-override')
 const NewsAPI = require('newsapi');
 const article = require('./models/article');
 const loginController = require('./controllers/login_controller');
+
+
 
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
@@ -28,6 +30,8 @@ app.use(session({
     saveUninitialized: false,
     store: store 
 }));
+
+
 
 const isAuth = (req, res, next) => {
     if (req.session.isAuth) {
@@ -44,7 +48,7 @@ app.set('view engine', 'ejs');
 // MIDDLEWARE & STATIC FILES
 app.use('/assets',express.static('assets'));
 app.use('/uploads',express.static('uploads'));
-
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
