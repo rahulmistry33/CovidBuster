@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
+const cors = require('cors')
 const mongoose = require('mongoose');
 const news = require('./models/article');
 const bodyParser = require('body-parser');
@@ -20,9 +20,6 @@ const loginController = require('./controllers/login_controller');
 
 //CONNECT TO MONGODB
 // mongoose.connect("mongodb://localhost:27017/covidBuster", { useUnifiedTopology: true },{ useNewUrlParser: true },{useCreateIndex: true}, {useFindAndModify: false})
-
-
-
 
 //CONNECTION USING MONGODB CLOUD...UNCOMMENT IF NEEDED.
 // const dbURI = 'mongodb+srv://rahulmistry:rahul123@covid-buster.z3xlk.mongodb.net/covid-buster?retryWrites=true&w=majority';
@@ -48,6 +45,8 @@ app.use(session({
     store: store 
 }));
 
+
+
 const isAuth = (req, res, next) => {
     if (req.session.isAuth) {
         next();
@@ -63,7 +62,7 @@ app.set('view engine', 'ejs');
 // MIDDLEWARE & STATIC FILES
 app.use('/assets',express.static('assets'));
 app.use('/uploads',express.static('uploads'));
-
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))

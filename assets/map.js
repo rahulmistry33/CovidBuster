@@ -1,7 +1,9 @@
 
 
 counts = {};
+// getData();
 function getData(){
+    console.log("HOLA");
     const xhr = new XMLHttpRequest();
     //get request
     // xhr.open('GET','https://api.rootnet.in/covid19-in/stats/latest',true);
