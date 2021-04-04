@@ -3,23 +3,22 @@
 counts = {};
 getData();
 function getData(){
-    console.log("HOLA");
+    
     const xhr = new XMLHttpRequest();
     //get request
-    // xhr.open('GET','https://api.rootnet.in/covid19-in/stats/latest',true);
     xhr.open('GET','https://api.covid19india.org/data.json',true);
     xhr.onload = function(){
-        console.log(this.responseText);
+        // console.log(this.responseText);
         // if(this.status === 200){
         let obj = JSON.parse(this.responseText);
-        console.log(obj.statewise);
+        // console.log(obj.statewise);
         states = obj.statewise;
         // console.log("states is :"+states);
         c = 0;
         for(let i=0;i<states.length;i++){
             if(states[i].states == "Total") continue;
-            console.log(states[i].state +" "+states[i].statecode);
-            console.log(states[i].active);
+            // console.log(states[i].state +" "+states[i].statecode);
+            // console.log(states[i].active);
             counts[states[i].state] = {confirmed:states[i].confirmed,active:states[i].active,code:states[i].statecode};
         }
         // console.log(counts+" is counts");

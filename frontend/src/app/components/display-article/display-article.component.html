@@ -1,0 +1,17 @@
+<div class="container">
+        
+        <h4 class="mb-4">{{ article.title }}</h4>
+        <div>
+            <div>
+                {{ article.createdAt }}
+            </div>
+            
+            <div>
+                {{ article.description }}
+            </div>
+            
+            <a href="/editArticles/{{ article._id }}" id="edit" class="btn btn-secondary">Edit</a>
+           
+        </div>
+        
+</div>
