@@ -87,7 +87,11 @@ app.get('/articles',(req,res) => {
                 console.log("ERROR!");
             }
             else{
-                res.render('articles',{ articles: articles })
+                //FOR EJS:
+                // res.render('articles',{ articles: articles })
+
+                //FOR ANGULAR SERVING AS A REST API
+                res.json(articles)
             }
         })
 })
@@ -96,10 +100,13 @@ app.get('/articles',(req,res) => {
 app.get('/articles/:id',(req,res)=>{
     console.log(req.url)
     article.findById(req.params.id ,(err,articles)=>{
-        if(err) res.redirect('/articles')
+        if(err) console.log("ERROR ARTICLE NOT FOUND")
         else{
-            // console.log(articles);
-            res.render('show',{ articles: articles })
+            //FOR EJS
+            // res.render('show',{ articles: articles })
+
+            //FOR ANGULAR SERVING AS A REST API
+            res.json(articles);
         }
        
     });
@@ -133,7 +140,11 @@ app.put('/articles/:id',(req,res)=>{
         }
         else{
             console.log("Updated the item:")
-            res.redirect('/articles')
+            //FOR EJS
+            // res.redirect('/articles')
+
+            //FOR ANGULAR
+            res.send({articles:articles});
         }
        
     });
@@ -148,7 +159,11 @@ app.delete('/articles/:id',(req,res)=>{
         }
         else{
             console.log("Deleted the item")
-            res.redirect('/articles')
+            //FOR EJS
+            // res.redirect('/articles')
+
+            //FOR ANGULAR
+            res.send({message:"Delete the item"})
         }
        
     });
@@ -162,13 +177,18 @@ app.get('/newArticle',(req,res) => {
 
 //SAVE THE ARTICLE TO DATABASE
 app.post('/newArticle',(req,res)=>{
-    console.log("new article")
+    // console.log(req.title+" title is");
     const articles = new article({
         title:req.body.title,
         description:req.body.description,
     });
     articles.save()
-    res.redirect('/articles')
+
+    //FOR ANGULAR
+    res.send({articles:articles});
+
+    //FOR EJS
+    // res.redirect('/articles')
 })
 
 
