@@ -12,14 +12,13 @@ export class NewsComponent implements OnInit {
 
   newsList : any;
   ngOnInit(): void {
-    // console.log(this.displayNewsService.dislayNews());
+    
 
     //HTTP always returns an observable, thats why use subscribe function 
     this.displayNewsService.dislayNews().subscribe(data => 
       this.newsList = data
-      // console.log(data);
     );
-    console.log(this.newsList);
+    
   }
 
 }

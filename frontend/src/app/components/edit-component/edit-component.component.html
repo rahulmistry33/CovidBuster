@@ -1,0 +1,22 @@
+
+
+<div class="container">
+    <h1 class="mb-4"> Write an Article </h1>
+    <form #editArticleForm="ngForm" (ngSubmit)="onSubmit(editArticleForm)" novalidate>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input required type="text" name="title"  id="title" [(ngModel)] = "article.title" class="form-control">
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="description" name="description"  id="description"  [(ngModel)] = "article.description" class="form-control"></textarea>
+        </div>
+        
+        <br>
+        
+        <a href="/articles" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary"> Save </button>
+    </form>
+</div>
