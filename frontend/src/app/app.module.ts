@@ -16,6 +16,7 @@ import { CreateArticleComponent } from './components/create-article/create-artic
 // services
 import {DisplayNewsService} from './services/display-news.service';
 import {ArticlesService} from './services/articles.service';
+import {CovidcasesService} from './services/covidcases.service'
 
 //modules:
 import {HttpClientModule} from '@angular/common/http';
@@ -42,7 +43,7 @@ import { EditComponentComponent } from './components/edit-component/edit-compone
     HttpClientModule, //import the module here, always :)
     FormsModule
   ],
-  providers: [DisplayNewsService,ArticlesService],    // always add in providers list after you create a service
+  providers: [DisplayNewsService,ArticlesService,CovidcasesService],    // always add in providers list after you create a service
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,9 +13,15 @@
   float:left;
 }
 
-.carousel-item>img {
-  width: 100%
+
+
+.container-fluid{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  min-height: 8%;
 }
-#slide .carousel-item {
-  height: 500px;
+
+h5 {
+  text-align: center;
 }

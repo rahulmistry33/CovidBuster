@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="news.component.css">
 <div>
-    <div class="row" id='news'>
+    <div class="row newscard">
         <!-- <% response.forEach(function(item){ %> -->
-            <div *ngFor="let item of newsList.articles" class="col-sm-3"><div class="card" style="width: 18rem;">
+            <!-- <div *ngFor="let item of newsList.articles" class="col-sm-3"><div class="card" style="width: 18rem;">
                 <img src="{{ item.urlToImage }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.title }}</h5>
@@ -9,7 +10,17 @@
                     <a href ="{{ item.url }}" class="btn btn-primary">View More</a>
                 </div>
                 </div>
-                </div>
+                </div> -->
+
+                <div  *ngFor="let item of newsList.articles" class="card mb-3">
+                    <img class="card-img-top" src="{{ item.urlToImage }}" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ item.title }}</h5>
+                      <p class="card-text">{{ item.content }}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      <a href ="{{ item.url }}" class="btn btn-primary">View More</a>
+                    </div>
+                  </div>
         <!-- <% }); %> -->
     </div>
 
