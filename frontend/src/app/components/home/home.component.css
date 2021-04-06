@@ -1,0 +1,45 @@
+
+.details{
+    display: inline-block;
+    margin:2px;
+  }
+  
+  #trend-card,
+          #map-card,
+          #help-card {
+              height: 200px;
+              width: 300px;
+              overflow: hidden;
+              border: none !important;
+              /* transition: ease 0.8s all; */
+          }
+          
+          @media only screen and (max-width: 700px) {
+              #trend-card,
+              #map-card,
+              #help-card {
+                  height: 200px;
+                  width: 400px;
+                  overflow: hidden;
+                  border: none !important;
+                  transition: ease 0.8s all;
+              }
+          }
+          
+          #trend-card:hover,
+          #map-card:hover,
+          #help-card:hover {
+              transform: scale(1.01);
+          }
+          
+          img.absolute {
+              position: absolute;
+          }
+          
+          .parent {
+              text-align: center;
+          }
+          
+          .parent a {
+              display: inline-flex;
+          }

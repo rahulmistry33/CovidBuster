@@ -5,11 +5,12 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class DisplayNewsService {
+export class CovidcasesService {
 
   constructor(private httpClient : HttpClient) { }
-  dislayNews(){
-    let url = 'https://newsapi.org/v2/top-headlines?country=in&q=covid&apiKey=a8720d66af5749479e06c45ec5ff5a92'
+  getCount(){
+    let url = 'https://api.covid19api.com/world/total';
     return this.httpClient.get(url)
   }
+
 }

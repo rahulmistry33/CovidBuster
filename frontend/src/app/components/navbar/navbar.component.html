@@ -1,13 +1,28 @@
-<nav>
+<!-- <nav>
     <div class="nav-wrapper light-blue">
         <span class="text-white p-3"><a href="/" class="brand-logo">CovidBuster</a></span>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a [routerLink] = "['/maps']">Map</a></li>
             <li><a class="text-white" [routerLink] = "['/login']"><i class="material-icons left">account_circle</i>Login</a></li>
             <li><a class="text-white" [routerLink] = "['/articles']">Articles </a></li>
-            <!-- <form (submit)=""> -->
             <li><a class="text-white" [routerLink] = "['/news']">News </a></li>
-            <!-- </form> -->
+           
         </ul>
     </div>
-</nav>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+    <a class="navbar-brand text-white" href="/">CovidBuster</a>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+      <div class="navbar-nav ">
+        <a class="nav-item nav-link text-white" href="/articles">Articles</a>
+        <a class="nav-item nav-link text-white" href="/news">News</a>
+        <a class="nav-item nav-link text-white" href="/maps">Map</a>
+        <!-- <i class="material-icons">account_circle</i> -->
+        <a class="nav-item nav-link text-white" href="/login">Login</a>
+      </div>
+    </div>
+  </nav>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CovidcasesService} from '../../services/covidcases.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private covidcasesService:CovidcasesService) { }
 
+  covidCases : any;
   ngOnInit(): void {
+    this.covidcasesService.getCount().subscribe( data =>
+      this.covidCases = data
+    );
+
   }
+  
 
 }
