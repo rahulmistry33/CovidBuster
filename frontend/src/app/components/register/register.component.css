@@ -1,0 +1,25 @@
+
+.row{
+    margin-top: 3%;
+}
+
+.col{
+    margin: auto;
+    padding: 4em;
+    /* background: blue; */    
+}
+
+.illustration{
+    width: 90%;
+    height: 90%;
+}
+
+.card{
+    height: 95%;
+    width: 80%;
+    margin: auto;
+    padding: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Roboto', sans-serif;
+}
+
