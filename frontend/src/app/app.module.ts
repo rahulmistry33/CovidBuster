@@ -10,6 +10,7 @@ import { MapsComponent } from './components/maps/maps.component';
 import { NewsComponent } from './components/news/news.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { DisplayArticleComponent } from './components/display-article/display-article.component';
 import { CreateArticleComponent } from './components/create-article/create-article.component';
 
@@ -24,6 +25,7 @@ import {FormsModule} from '@angular/forms';
 import { EditComponentComponent } from './components/edit-component/edit-component.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { EditComponentComponent } from './components/edit-component/edit-compone
     LoginComponent,
     DisplayArticleComponent,
     CreateArticleComponent,
-    EditComponentComponent
+    EditComponentComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

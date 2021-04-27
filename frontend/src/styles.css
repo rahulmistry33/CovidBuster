@@ -13,15 +13,6 @@
   float:left;
 }
 
-
-
-.container-fluid{
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  min-height: 8%;
-}
-
 h5 {
   text-align: center;
 }
