@@ -53,7 +53,7 @@ app.set('view engine', 'ejs');
 
 // MIDDLEWARE & STATIC FILES
 // app.use('/assets',express.static('assets'));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(__dirname + '/public'));
 
 app.use('/uploads',express.static('uploads'));
 app.use(cors())
