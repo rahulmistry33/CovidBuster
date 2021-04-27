@@ -1,5 +1,3 @@
-
-
 counts = {};
 getData();
 function getData(){
