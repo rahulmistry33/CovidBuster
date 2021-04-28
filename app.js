@@ -20,7 +20,7 @@ const loginController = require('./controllers/login_controller');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-const uri = 'mongodb+srv://rahulmistry:1234@covid-buster.k9erx.mongodb.net/covidBuster?retryWrites=true&w=majority'
+const uri = 'mongodb+srv://rahulmistry:1234@covid-buster.k9erx.mongodb.net/covid-buster?retryWrites=true&w=majority'
 const store = new MongoDBStore({
     // uri: 'mongodb://localhost:27017/covidBuster',
     uri:uri,
